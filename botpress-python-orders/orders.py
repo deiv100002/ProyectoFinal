@@ -49,3 +49,15 @@ def create_order(db, order_data):
     db.refresh(new_order)
 
     return new_order
+
+
+def get_all_orders(db: Session):
+    return db.query(Order).all()
+
+
+def get_order_by_id(db: Session, order_id: str):
+    return (
+        db.query(Order)
+        .filter(Order.order_id == order_id)
+        .first()
+    )
